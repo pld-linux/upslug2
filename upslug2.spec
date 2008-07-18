@@ -1,10 +1,11 @@
 # TODO:
 #	- check Version and License
 #
-%define svn_revision 40
-%define snapshot_date 20071120
+%define		svn_revision	40
+%define		snapshot_date	20071120
 
-Summary:	Firmware update utility for the NSLU2
+Summary:	Firmware update utility for the LinkSys NSLU2
+Summary(pl.UTF-8):	Narzędzie do uaktualniania firmware'u w urządzeniach LinkSys NSLU2
 Name:		upslug2
 Version:	0.12
 Release:	0.svn%{svn_revision}.1
@@ -29,6 +30,18 @@ upslug2 also optimizes the upload to avoid transmitted parts of the
 image which need not be written or are 'blank' (set to the erased
 flash value of all 1's).
 
+%description -l pl.UTF-8
+upslug2 to działający z linii poleceń program umożliwiający
+uaktualnienie firmware'u w urządzeniach LinkSys NSLU2 do nowszej lub
+innej wersji. W przeciwieństwie do narzędzi uaktualniających firmy
+LinkSys (Sercomm) upslug2 łączy pełny obraz z jądra i głównego systemu
+plików, powielając funkcjonalność narzędzia slugimage.
+
+upslug2 dodatkowo optymalizuje wysyłanie danych, aby zapobiec
+przesyłaniu wcześniej przesłanych części obrazu, które nie muszą być
+zapisywane albo są "puste" (ustawione na jedynki powstałe w wyniku
+kasowania pamięci flash).
+
 %prep
 %setup -q -n %{name}
 
@@ -47,8 +60,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT/%{_mandir}/man8
-install upslug2.8 $RPM_BUILD_ROOT/%{_mandir}/man8
+install -d $RPM_BUILD_ROOT%{_mandir}/man8
+install upslug2.8 $RPM_BUILD_ROOT%{_mandir}/man8
 
 %clean
 rm -rf $RPM_BUILD_ROOT
